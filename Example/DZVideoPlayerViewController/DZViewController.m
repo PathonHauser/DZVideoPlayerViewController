@@ -27,13 +27,19 @@ NSString *const kVideoFileExtension = @"mp4";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.videoPlayerViewController = self.videoContainerView.videoPlayerViewController;
     self.videoPlayerViewController.delegate = self;
+
+//    UIDevice.currentDevice().beginGeneratingDeviceOrientationNotifications()
+//    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("orientationChanged:"), name: UIDeviceOrientationDidChangeNotification, object: nil)
 //    self.videoPlayerViewController.configuration.isBackgroundPlaybackEnabled = NO;
 //    self.videoPlayerViewController.configuration.isShowFullscreenExpandAndShrinkButtonsEnabled = NO;
 //    self.videoPlayerViewController.configuration.isHideControlsOnIdleEnabled = NO;
+
     
-    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:kVideoFileName withExtension:kVideoFileExtension];
+    //NSURL *fileURL = [[NSBundle mainBundle] URLForResource:kVideoFileName withExtension:kVideoFileExtension];
+    NSURL *fileURL = [NSURL URLWithString:@"http://d22mrfnizp0m66.cloudfront.net/dota2/fa701a0f4bacb1f5fe20f8a2800dd09b99e1a90e6b3076fca8f4335a16438cb2/1d16b88ccac3066be25599e6de6df99e22ae4624a810102e6d710777c38528ec/v.mp4"];
     self.videoPlayerViewController.videoURL = fileURL;
     [self.videoPlayerViewController prepareAndPlayAutomatically:YES];
 }
@@ -45,6 +51,7 @@ NSString *const kVideoFileExtension = @"mp4";
 }
 
 - (BOOL)prefersStatusBarHidden {
+    
     return self.videoPlayerViewController.isFullscreen;
 }
 
@@ -53,7 +60,12 @@ NSString *const kVideoFileExtension = @"mp4";
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    if (size.width > size.height) {
+        
+        [self.videoPlayerViewController toggleFullscreen:nil];
+    }
 }
 
 #pragma mark - <DZVideoPlayerViewControllerDelegate>
@@ -75,14 +87,16 @@ NSString *const kVideoFileExtension = @"mp4";
 }
 
 - (void)playerDidToggleFullscreen {
+    
     if (self.videoPlayerViewController.isFullscreen) {
         // expand videoPlayerViewController to fullscreen
         self.contentViewAspectRatioConstraint.priority = UILayoutPriorityDefaultLow;
         self.contentViewBottomSpaceConstraint.priority = UILayoutPriorityDefaultHigh;
         
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             [self.contentView layoutIfNeeded];
             [self setNeedsStatusBarAppearanceUpdate];
+            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         } completion:^(BOOL finished) {
             
         }];
@@ -92,13 +106,14 @@ NSString *const kVideoFileExtension = @"mp4";
         self.contentViewBottomSpaceConstraint.priority = UILayoutPriorityDefaultLow;
         self.contentViewAspectRatioConstraint.priority = UILayoutPriorityDefaultHigh;
         
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             [self.contentView layoutIfNeeded];
             [self setNeedsStatusBarAppearanceUpdate];
         } completion:^(BOOL finished) {
             
         }];
     }
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (void)playerDidPlayToEndTime {
@@ -113,6 +128,14 @@ NSString *const kVideoFileExtension = @"mp4";
 }
 
 - (void)playerDoneButtonTouched {
+    
+}
+
+- (void)playerSkipButtonTouched {
+    
+}
+
+- (void)playerShareButtonTouched {
     
 }
 

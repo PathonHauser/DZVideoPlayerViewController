@@ -47,6 +47,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *fullscreenExpandButton;
 @property (weak, nonatomic) IBOutlet UIButton *fullscreenShrinkButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
+@property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet UIImageView *championImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *playerImageView;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 //
 
 + (NSBundle*)bundle;

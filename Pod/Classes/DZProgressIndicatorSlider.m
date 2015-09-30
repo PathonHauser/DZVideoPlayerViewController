@@ -42,7 +42,9 @@
     
     CGFloat hue, sat, bri;
     [[self tintColor] getHue:&hue saturation:&sat brightness:&bri alpha:nil];
-    [self.progressView setTintColor:[UIColor colorWithHue:hue saturation:(sat * 0.6f) brightness:bri alpha:1]];
+    UIImage *image = [UIImage imageNamed:@"scrubber"];
+    [[UISlider appearance] setThumbImage:image forState:UIControlStateNormal];
+    [self.progressView setTintColor:[UIColor colorWithHue:hue saturation:(sat * 0.6f) brightness:bri alpha:0.3]];
 }
 
 - (void)setTintColor:(UIColor *)tintColor {
@@ -50,7 +52,7 @@
     
     CGFloat hue, sat, bri;
     [[self tintColor] getHue:&hue saturation:&sat brightness:&bri alpha:nil];
-    [self.progressView setTintColor:[UIColor colorWithHue:hue saturation:(sat * 0.6f) brightness:bri alpha:1]];
+    [self.progressView setTintColor:[UIColor colorWithHue:hue saturation:(sat * 0.6f) brightness:bri alpha:0.4]];
 }
 
 - (void)setSecondaryValue:(float)value {

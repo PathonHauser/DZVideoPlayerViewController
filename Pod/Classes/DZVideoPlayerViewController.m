@@ -54,6 +54,10 @@ static const NSString *PlayerStatusContext;
             nibName = [NSString stringWithFormat:@"%@_%@", classString, @"simple"];
             break;
             
+        case DZVideoPlayerViewControllerStyleBruce:
+            nibName = [NSString stringWithFormat:@"%@_%@", classString, @"bruce"];
+            break;
+            
         default:
             nibName = classString;
             break;
@@ -107,7 +111,8 @@ static const NSString *PlayerStatusContext;
     if (self.bottomToolbarView) {
         [self.configuration.viewsToHideOnIdle addObject:self.bottomToolbarView];
     }
-    
+    [self.configuration.viewsToHideOnIdle addObject:self.playButton];
+    [self.configuration.viewsToHideOnIdle addObject:self.pauseButton];
     self.initialFrame = self.view.frame;
     
     [self setupActions];
@@ -116,6 +121,9 @@ static const NSString *PlayerStatusContext;
     [self setupPlayer];
     [self setupRemoteCommandCenter];
     [self syncUI];
+    
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -138,6 +146,8 @@ static const NSString *PlayerStatusContext;
     [self resignRemoteCommandCenter];
     [self resignPlayer];
     [self resetNowPlayingInfo];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIDeviceOrientationDidChangeNotification];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
 #pragma mark - Properties
@@ -234,6 +244,7 @@ static const NSString *PlayerStatusContext;
     [self syncUI];
     [self onPlay];
     [self updateNowPlayingInfo];
+    [self hideControls];
 }
 
 - (void)pause {
@@ -305,7 +316,30 @@ static const NSString *PlayerStatusContext;
 }
 
 - (void)toggleFullscreen:(id)sender {
+    
     _isFullscreen = !_isFullscreen;
+    if (self.bottomToolbarView.alpha == 1) {
+        
+        [UIView animateWithDuration:.3 animations:^{
+            
+            self.topToolbarView.alpha = _isFullscreen ? 1 : 0;
+        }];
+    }
+
+    if (sender != nil) {
+        
+        NSNumber *value = nil;
+        if (_isFullscreen) {
+            
+            value = [NSNumber numberWithInt:UIInterfaceOrientationLandscapeRight];
+        }
+        else {
+            
+            value = [NSNumber numberWithInt:UIInterfaceOrientationPortrait];
+        }
+        [[UIDevice currentDevice] setValue:value forKey:@"orientation"];
+    }
+    
     [self onToggleFullscreen];
     [self syncUI];
     [self startIdleCountdown];
@@ -385,6 +419,7 @@ static const NSString *PlayerStatusContext;
     NSArray *views = self.configuration.viewsToHideOnIdle;
     [UIView animateWithDuration:0.3f animations:^{
         for (UIView *view in views) {
+            
             view.alpha = 0.0;
         }
     }];
@@ -395,7 +430,15 @@ static const NSString *PlayerStatusContext;
     NSArray *views = self.configuration.viewsToHideOnIdle;
     [UIView animateWithDuration:0.3f animations:^{
         for (UIView *view in views) {
-            view.alpha = 1.0;
+            
+            if (view == self.topToolbarView && _isFullscreen) {
+                
+                view.alpha = 1.0;
+            }
+            else if (view != self.topToolbarView) {
+                
+                view.alpha = 1.0;
+            }
         }
     }];
     self.isControlsHidden = NO;
@@ -431,6 +474,7 @@ static const NSString *PlayerStatusContext;
 #pragma mark - Private Actions
 
 - (void)setupPlayer {
+    
     self.player = [[AVPlayer alloc] initWithPlayerItem:nil];
     
     [self.player addObserver:self forKeyPath:@"rate"
@@ -504,6 +548,9 @@ static const NSString *PlayerStatusContext;
     [self.progressIndicator addTarget:self action:@selector(endSeeking:) forControlEvents:UIControlEventTouchUpInside|UIControlEventTouchUpOutside];
     
     [self.doneButton addTarget:self action:@selector(onDoneButtonTouched) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.shareButton addTarget:self action:@selector(onShareButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.skipButton addTarget:self action:@selector(onSkipButton) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)resignKVO {
@@ -747,4 +794,36 @@ static const NSString *PlayerStatusContext;
     }
 }
 
+- (void) onShareButton {
+    if ([self.delegate respondsToSelector:@selector(playerShareButtonTouched)]) {
+        [self.delegate playerShareButtonTouched];
+    }
+}
+
+- (void) onSkipButton {
+    if ([self.delegate respondsToSelector:@selector(playerSkipButtonTouched)]) {
+        [self.delegate playerSkipButtonTouched];
+    }
+}
+
+
+- (void) orientationChanged:(NSNotification*)notification {
+    
+    UIDeviceOrientation or = [UIDevice currentDevice].orientation;
+    if (or == UIDeviceOrientationPortrait && _isFullscreen) {
+        
+        [self toggleFullscreen:nil];
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+    else if ((or == UIDeviceOrientationLandscapeLeft || or == UIDeviceOrientationLandscapeRight) && !_isFullscreen){
+        
+        [self toggleFullscreen:nil];
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
+}
+
+- (BOOL)prefersStatusBarHidden {
+    
+    return _isFullscreen;
+}
 @end

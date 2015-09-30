@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DZVideoPlayerViewController">
+            <connections>
+                <outlet property="bottomToolbarView" destination="pOq-cI-DWl" id="YRb-Fd-vW0"/>
+                <outlet property="currentTimeLabel" destination="sfz-xq-BST" id="vQ7-G3-hIg"/>
+                <outlet property="pauseButton" destination="whW-wU-lBo" id="I3G-B1-7RY"/>
+                <outlet property="playButton" destination="Ru6-Jv-lag" id="NTw-Sm-sCr"/>
+                <outlet property="playerView" destination="OeB-Aj-AOO" id="ug7-Yg-fLC"/>
+                <outlet property="progressIndicator" destination="V95-wY-Drj" id="0fP-wY-MiI"/>
+                <outlet property="remainingTimeLabel" destination="DtG-xw-OsH" id="Acy-tk-Dqq"/>
+                <outlet property="topToolbarView" destination="zAA-YP-XRh" id="79Y-WQ-RUZ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="2bZ-M6-DzH"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OeB-Aj-AOO" customClass="DZPlayerView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAA-YP-XRh" userLabel="TopToolbarView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="gut-qz-lFN"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pOq-cI-DWl" userLabel="BottomToolbarView">
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V95-wY-Drj" customClass="DZProgressIndicatorSlider">
+                            <rect key="frame" x="54" y="11" width="464.5" height="22"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-od-ilQ" userLabel="Progress View" customClass="UIProgressView">
+                                    <rect key="frame" x="0.0" y="8" width="464.5" height="8"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="8" id="o1f-w3-KoG"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="dQB-od-ilQ" firstAttribute="leading" secondItem="V95-wY-Drj" secondAttribute="leading" id="W8r-oW-4cw"/>
+                                <constraint firstAttribute="trailing" secondItem="dQB-od-ilQ" secondAttribute="trailing" id="Z88-zz-nfm"/>
+                                <constraint firstAttribute="centerY" secondItem="dQB-od-ilQ" secondAttribute="centerY" constant="-1" id="qq7-3b-etC"/>
+                                <constraint firstAttribute="height" constant="22" id="r93-sR-Kae"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="progressView" destination="dQB-od-ilQ" id="zdA-Hn-wtm"/>
+                            </connections>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfz-xq-BST" userLabel="CurrentTimeLabel">
+                            <rect key="frame" x="18" y="17" width="26.5" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" priority="500" constant="36" id="bT6-5V-oFA"/>
+                                <constraint firstAttribute="height" constant="12" id="pRa-e9-0SC"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtG-xw-OsH" userLabel="CurrentTimeLabel">
+                            <rect key="frame" x="529" y="17" width="26.5" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="7V8-pf-xYx"/>
+                                <constraint firstAttribute="width" priority="500" constant="36" id="sjS-VR-05s"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NK-kq-aAE">
+                            <rect key="frame" x="566" y="10" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="TaB-6L-U1r"/>
+                                <constraint firstAttribute="height" constant="24" id="y6S-fc-ndF"/>
+                            </constraints>
+                            <state key="normal" title="B">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Cip-Tv-i5P"/>
+                        <constraint firstItem="sfz-xq-BST" firstAttribute="leading" secondItem="pOq-cI-DWl" secondAttribute="leading" constant="18" id="LuH-bV-Mpb"/>
+                        <constraint firstItem="2NK-kq-aAE" firstAttribute="leading" secondItem="DtG-xw-OsH" secondAttribute="trailing" constant="10" id="TOI-V0-6fo"/>
+                        <constraint firstItem="V95-wY-Drj" firstAttribute="leading" secondItem="sfz-xq-BST" secondAttribute="trailing" constant="10" id="TiP-RV-XDO"/>
+                        <constraint firstAttribute="trailing" secondItem="2NK-kq-aAE" secondAttribute="trailing" constant="10" id="W9T-OJ-pnc"/>
+                        <constraint firstAttribute="centerY" secondItem="2NK-kq-aAE" secondAttribute="centerY" id="WJe-az-VoM"/>
+                        <constraint firstItem="DtG-xw-OsH" firstAttribute="leading" secondItem="V95-wY-Drj" secondAttribute="trailing" constant="10" id="WoF-Wd-WUB"/>
+                        <constraint firstAttribute="centerY" secondItem="V95-wY-Drj" secondAttribute="centerY" id="dd4-Nk-tsX"/>
+                        <constraint firstAttribute="centerY" secondItem="DtG-xw-OsH" secondAttribute="centerY" multiplier="0.95" id="jAu-aS-hDI"/>
+                        <constraint firstAttribute="centerY" secondItem="sfz-xq-BST" secondAttribute="centerY" multiplier="0.95" id="wPY-Nd-Hzg"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-Jv-lag" userLabel="PlayButton">
+                    <rect key="frame" x="280" y="280" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="jQR-PY-HDt"/>
+                        <constraint firstAttribute="height" constant="40" id="t6Y-wT-HyW"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whW-wU-lBo" userLabel="PauseButton">
+                    <rect key="frame" x="280" y="280" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="CgA-bt-TGz"/>
+                        <constraint firstAttribute="height" constant="40" id="WOE-OL-Wgv"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OeB-Aj-AOO" secondAttribute="trailing" id="0JX-07-HIo"/>
+                <constraint firstAttribute="trailing" secondItem="zAA-YP-XRh" secondAttribute="trailing" id="0Sa-Vr-csc"/>
+                <constraint firstItem="Ru6-Jv-lag" firstAttribute="top" secondItem="whW-wU-lBo" secondAttribute="top" id="1vs-Ob-fvl"/>
+                <constraint firstAttribute="bottom" secondItem="OeB-Aj-AOO" secondAttribute="bottom" id="5Hz-7E-fuP"/>
+                <constraint firstAttribute="centerY" secondItem="Ru6-Jv-lag" secondAttribute="centerY" id="9H1-wS-wGG"/>
+                <constraint firstItem="zAA-YP-XRh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="EjI-hk-niD"/>
+                <constraint firstItem="OeB-Aj-AOO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Hwg-jO-St9"/>
+                <constraint firstItem="Ru6-Jv-lag" firstAttribute="leading" secondItem="whW-wU-lBo" secondAttribute="leading" id="SV7-gA-fdu"/>
+                <constraint firstAttribute="bottom" secondItem="pOq-cI-DWl" secondAttribute="bottom" id="U0V-84-Y6N"/>
+                <constraint firstItem="OeB-Aj-AOO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Wqk-Sw-HlQ"/>
+                <constraint firstAttribute="centerX" secondItem="Ru6-Jv-lag" secondAttribute="centerX" id="aP8-n7-rej"/>
+                <constraint firstItem="zAA-YP-XRh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hOZ-Gc-7nT"/>
+                <constraint firstAttribute="trailing" secondItem="pOq-cI-DWl" secondAttribute="trailing" id="i7t-Np-YaU"/>
+                <constraint firstItem="pOq-cI-DWl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jhY-Kh-Xwg"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+        </view>
+    </objects>
+</document>

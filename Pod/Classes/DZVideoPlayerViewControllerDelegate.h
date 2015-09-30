@@ -20,7 +20,8 @@
 - (void)playerFailedToPlayToEndTime;
 - (void)playerPlaybackStalled;
 - (void)playerDoneButtonTouched;
-
+- (void)playerSkipButtonTouched;
+- (void)playerShareButtonTouched;
 
 - (void)playerRequireNextTrack;
 - (void)playerRequirePreviousTrack;

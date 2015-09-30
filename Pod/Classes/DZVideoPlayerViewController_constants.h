@@ -10,5 +10,6 @@
 
 typedef NS_ENUM(NSInteger, DZVideoPlayerViewControllerStyle) {
     DZVideoPlayerViewControllerStyleDefault = 0,
-    DZVideoPlayerViewControllerStyleSimple = 1
+    DZVideoPlayerViewControllerStyleSimple = 1,
+    DZVideoPlayerViewControllerStyleBruce = 2
 };

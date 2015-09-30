@@ -10,11 +10,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   DZVideoPlayerViewController:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  DZVideoPlayerViewController: 67118b156fdae14c1af18835cc6fd0956859d072
+  DZVideoPlayerViewController: 0a11f3d9be048f121ad7e92c9bd7ed58031d1412
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
   Specta: 9cec98310dca411f7c7ffd6943552b501622abfe
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.37.1

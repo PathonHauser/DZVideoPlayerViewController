@@ -5,8 +5,8 @@
   "description": "                       iOS Video Player control with playback controls, remote control center commands, background playback, now playing info updates. Implemented with AVPlayer, supports both online and offline videos. Highly customizable with Interface Builder.\n",
   "homepage": "https://github.com/DZamataev/DZVideoPlayerViewController",
   "screenshots": [
-    "https://raw.githubusercontent.com/DZamataev/DZVideoPlayerViewController/master/Screenshots/screenshot1.1.png",
-    "https://raw.githubusercontent.com/DZamataev/DZVideoPlayerViewController/master/Screenshots/screenshot2.1.png"
+    "https://raw.githubusercontent.com/DZamataev/DZVideoPlayerViewController/master/Screenshots/screenshot1(0.3.0).png",
+    "https://raw.githubusercontent.com/DZamataev/DZVideoPlayerViewController/master/Screenshots/screenshot2(0.3.0).png"
   ],
   "license": "MIT",
   "authors": {
