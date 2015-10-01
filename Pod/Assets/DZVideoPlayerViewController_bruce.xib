@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -114,10 +115,10 @@
                     <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                     <subviews>
                         <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V95-wY-Drj" customClass="DZProgressIndicatorSlider">
-                            <rect key="frame" x="60" y="11" width="435" height="22"/>
+                            <rect key="frame" x="62" y="11" width="431" height="22"/>
                             <subviews>
                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQB-od-ilQ" userLabel="Progress View" customClass="UIProgressView">
-                                    <rect key="frame" x="0.0" y="8" width="435" height="8"/>
+                                    <rect key="frame" x="0.0" y="8" width="431" height="8"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="1" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -138,7 +139,7 @@
                             </connections>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfz-xq-BST" userLabel="CurrentTimeLabel">
-                            <rect key="frame" x="18" y="17" width="32" height="12"/>
+                            <rect key="frame" x="18" y="17" width="34" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="width" priority="500" constant="36" id="bT6-5V-oFA"/>
                                 <constraint firstAttribute="height" constant="12" id="pRa-e9-0SC"/>
@@ -148,7 +149,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtG-xw-OsH" userLabel="CurrentTimeLabel">
-                            <rect key="frame" x="505" y="17" width="32" height="12"/>
+                            <rect key="frame" x="503" y="17" width="34" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="7V8-pf-xYx"/>
                                 <constraint firstAttribute="width" priority="500" constant="36" id="sjS-VR-05s"/>

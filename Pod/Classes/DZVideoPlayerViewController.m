@@ -112,7 +112,7 @@ static const NSString *PlayerStatusContext;
         [self.configuration.viewsToHideOnIdle addObject:self.bottomToolbarView];
     }
     [self.configuration.viewsToHideOnIdle addObject:self.playButton];
-    [self.configuration.viewsToHideOnIdle addObject:self.pauseButton];
+//    [self.configuration.viewsToHideOnIdle addObject:self.pauseButton];
     self.initialFrame = self.view.frame;
     
     [self setupActions];
@@ -322,7 +322,7 @@ static const NSString *PlayerStatusContext;
         
         [UIView animateWithDuration:.3 animations:^{
             
-            self.topToolbarView.alpha = _isFullscreen ? 1 : 0;
+            self.bottomToolbarView.alpha = _isFullscreen ? 1 : 0;
         }];
     }
 
@@ -447,6 +447,7 @@ static const NSString *PlayerStatusContext;
 - (void)toggleControls {
     if (self.isControlsHidden) {
         [self showControls];
+        [self pause];
     }
     else {
         [self hideControls];
