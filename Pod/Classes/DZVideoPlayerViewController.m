@@ -122,6 +122,7 @@ static const NSString *PlayerStatusContext;
     [self setupRemoteCommandCenter];
     [self syncUI];
     
+    self.bottomToolbarView.alpha = 0;
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
@@ -146,8 +147,8 @@ static const NSString *PlayerStatusContext;
     [self resignRemoteCommandCenter];
     [self resignPlayer];
     [self resetNowPlayingInfo];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIDeviceOrientationDidChangeNotification];
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:UIDeviceOrientationDidChangeNotification];
+//    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
 #pragma mark - Properties
@@ -628,6 +629,7 @@ static const NSString *PlayerStatusContext;
 - (void)handleAVPlayerItemDidPlayToEndTime:(NSNotification *)notification {
     [self stop];
     [self onDidPlayToEndTime];
+    [self toggleControls];
 }
 
 - (void)handleAVPlayerItemFailedToPlayToEndTime:(NSNotification *)notification {
